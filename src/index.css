@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+    --color-Red: hsl(14, 86%, 42%);
+    --color-Green: hsl(159, 69%, 38%);
+
+    --color-Rose_50: hsl(20, 50%, 98%);
+    --color-Rose_100: hsl(13, 31%, 94%);
+    --color-Rose_300: hsl(14, 25%, 72%);
+    --color-Rose_400: hsl(7, 20%, 60%);
+    --color-Rose_500: hsl(12, 20%, 44%);
+    --color-Rose_900: hsl(14, 65%, 9%);
+}
+
+@layer components {
+    .body{
+        @apply flex flex-col sm:flex-row justify-center  min-h-screen bg-Rose_50 font-sans gap-7 py-20;
+    }
+}
