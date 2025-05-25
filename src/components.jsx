@@ -7,9 +7,9 @@ import decrementIcon from './assets/images/icon-decrement-quantity.svg';
 import incrementIcon from './assets/images/icon-increment-quantity.svg';
 import removeItemIcon from './assets/images/icon-remove-item.svg';
 import carbonNeutralIcon from './assets/images/icon-carbon-neutral.svg';
+import orderConfirmedIcon from './assets/images/icon-order-confirmed.svg';
 
-export function CartCard({selectedItems, onRemoveItem}){
-
+export function CartCard({selectedItems, onRemoveItem, onConfirm}){
     //calculate total cost
     const totalcost = selectedItems.reduce((acc, item) => {
         return acc + item.price * item.quantity;
@@ -64,11 +64,58 @@ export function CartCard({selectedItems, onRemoveItem}){
                    <p>This is  a<b className='text-Rose_900'> carbon-neutral </b> delivery</p> 
                   </div>
                   <button
+                    onClick={onConfirm}
                   className='bg-Red w-full text-white font-bold py-3 rounded-full mt-6 cursor-pointer'>
                     Confirm-Order</button>
                 </ul>
               )}
         </div>
+    )
+}
+
+
+export function OrderConfirmation({selectedItems, showOrderConfirmation, startNewOrder}) {
+    return(
+        <>
+        {showOrderConfirmation && (
+            <div className='fixed inset-0 bg-black bg-opacity-10 z-50 flex justify-center items-center p-4'>
+               <div className="bg-white w-full max-w-md rounded-2xl shadow-lg p-6 flex flex-col"> 
+                <img 
+                    className='w-7'
+                    src={orderConfirmedIcon} 
+                    alt="order confirmed" />
+
+                <h1 className="text-black text-[1.5rem] font-bold">Order Confirmed</h1>
+                <p className="text-[0.9rem] text-Rose_500 mb-4">We hope you enjoy your food!</p>
+               
+                <div className="w-full rounded-md p-4 bg-Rose_100">
+                   {selectedItems.map(item => (
+                     <div className='flex items-center justify-between my-2'>
+                        <div className='flex items-center gap-2 w-fit'>
+                        <img className='w-10 h-10 rounded-md' src={item.image} />
+                        <span className='flex flex-col'>
+                            <p className='text-Rose_900 font-medium text-[0.9rem]'>{item.name}</p>
+                            <p className='text-Rose_400 text-[0.9rem]'> <span className='text-Red'>
+                                {`${item.quantity}x`}</span> {`@ $${(item.price).toFixed(2)}`}</p>
+                        </span>
+                        </div>
+                        <p className='text-Rose_500'>{`$${(item.quantity * item.price).toFixed(2)}`}</p>
+                    </div>
+                   ))}
+
+                    <div className='flex justify-between'>
+                    <p className='text-Rose_400'>Order Total</p>
+                    <p className='text-[1rem] font-bold text-Rose_900'>${selectedItems.reduce((acc, item) => acc + item.quantity * item.price, 0).toFixed(2)}</p>
+                    </div>
+                </div>
+
+                <button 
+                    onClick={startNewOrder}
+                    className='bg-Red w-full text-white font-bold py-3 rounded-full mt-6 cursor-pointer'>Start New Order</button>
+                </div>
+            </div>
+        )}
+        </>
     )
 }
 
@@ -137,8 +184,8 @@ function Card({name, descrip, desktopImage, price, onUpdateCart}){
     )
 }
 
-export default function List({onUpdateCart}){
-    
+
+export default function List({onUpdateCart}){ 
     return (
         <div>
             <h1 className='text-[2rem] mb-9 font-bold'>Desserts</h1>

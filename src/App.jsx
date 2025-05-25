@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import List from './components'
-import { CartCard } from './components'
+import { CartCard, OrderConfirmation } from './components';
 
 export default function App(){
       const [selectedItems, setSelectedItems] = useState([]);
+      const [confirmStatus, setConfirmStatus] = useState(false);
 
     function handleUpdateCart(item, newQuantity) {
         setSelectedItems(prevItems => {
@@ -20,6 +21,7 @@ export default function App(){
             updatedItems[existingItemIndex] = {...item, quantity:newQuantity}
             return updatedItems;
         } else {
+          //Add new item if quantity > 0
             if(newQuantity > 0) {
                 return [...prevItems, {...item, quantity:newQuantity}];
             }
@@ -31,11 +33,33 @@ export default function App(){
     const handleRemoveItem = (name) => {
       setSelectedItems(prevItems => prevItems.filter(item => item.name !== name));
     }
+
+    const handleConfirm = () => {
+      setConfirmStatus(true);
+    }
+
+    const handleNewOrder = () => {
+      setSelectedItems([]);
+      setConfirmStatus(false);
+    }
+  
   
   return (
     <div className='body'>
-      < List onUpdateCart = {handleUpdateCart} />
-      < CartCard selectedItems={selectedItems} onRemoveItem={handleRemoveItem}/>
+      <OrderConfirmation 
+        selectedItems={selectedItems}
+        showOrderConfirmation ={confirmStatus} 
+        startNewOrder = {handleNewOrder}
+        />
+
+      <List
+        onUpdateCart = {handleUpdateCart} 
+        />
+
+      < CartCard 
+        selectedItems={selectedItems} 
+          onRemoveItem={handleRemoveItem} onConfirm={handleConfirm}
+          />
     </div>
   )
 }
