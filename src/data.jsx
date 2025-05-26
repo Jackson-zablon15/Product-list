@@ -1,11 +1,3 @@
-import cremeMobile from './assets/images/image-creme-brulee-mobile.jpg'
-import macaronMobile from './assets/images/image-macaron-mobile.jpg'
-import tiramisuMobile from './assets/images/image-tiramisu-mobile.jpg'
-import baklavaMobile from './assets/images/image-baklava-mobile.jpg'
-import cakeMobile from './assets/images/image-cake-mobile.jpg'
-import brownieMobile from './assets/images/image-brownie-mobile.jpg'
-import pannaMobile from './assets/images/image-panna-cotta-mobile.jpg'
-import waffleMobile from './assets/images/image-waffle-mobile.jpg'
 import cremeDesktop from './assets/images/image-creme-brulee-desktop.jpg'
 import macaronDesktop from './assets/images/image-macaron-desktop.jpg'
 import tiramisuDesktop from './assets/images/image-tiramisu-desktop.jpg'
@@ -21,7 +13,6 @@ const listData =[
         name: 'Waffle',
         descrip: 'Waffle with Berries',
         imageDesktop: waffleDesktop,
-        imageMobile: waffleMobile,
         price: 6.5
     },
     {
@@ -29,7 +20,6 @@ const listData =[
         name: 'Creme Brulee',
         descrip: 'Vanilla Bean Creme Brulee',
         imageDesktop: cremeDesktop,
-        imageMobile: cremeMobile,
         price: 7.00 
     },
     {
@@ -37,7 +27,6 @@ const listData =[
         name: 'Macaron',
         descrip: 'Macaron Mix of Five',
         imageDesktop: macaronDesktop,
-        imageMobile: macaronMobile,
         price: 8.00 
     },
     {
@@ -45,7 +34,6 @@ const listData =[
         name: 'Tiramisu',
         descrip: 'Classic Tiramisu',
         imageDesktop: tiramisuDesktop,
-        imageMobile: tiramisuMobile,
         price: 5.5 
     },
     {
@@ -53,7 +41,6 @@ const listData =[
         name: 'Baklava',
         descrip: 'Pistachio Baklava',
         imageDesktop: baklavaDesktop,
-        imageMobile: baklavaMobile,
         price: 4.00
     },
     {
@@ -61,7 +48,6 @@ const listData =[
         name: 'Pie',
         descrip: 'Lemon Meringue Pie',
         imageDesktop: cremeDesktop,
-        imageMobile: cremeMobile,
         price: 5.00 
     },
     {
@@ -69,7 +55,6 @@ const listData =[
         name: 'Cake',
         descrip: 'Red Velvet Cake',
         imageDesktop: cakeDesktop,
-        imageMobile: cakeMobile,
         price: 4.50 
     },
     {
@@ -77,7 +62,6 @@ const listData =[
         name: 'Brownie',
         descrip: 'Salted Caramel Brownie',
         imageDesktop: brownieDesktop,
-        imageMobile: brownieMobile,
         price: 5.50
     },
     {
@@ -85,7 +69,6 @@ const listData =[
         name: 'Panna Cotta',
         descrip: 'Vanilla Panna Cotta',
         imageDesktop: pannaDesktop,
-        imageMobile: pannaMobile,
         price: 6.50
     }
 ]

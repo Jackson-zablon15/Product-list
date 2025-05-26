@@ -58,7 +58,8 @@ export default function App(){
 
       < CartCard 
         selectedItems={selectedItems} 
-          onRemoveItem={handleRemoveItem} onConfirm={handleConfirm}
+        onRemoveItem={handleRemoveItem} 
+        onConfirm={handleConfirm}
           />
     </div>
   )

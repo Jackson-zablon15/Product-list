@@ -78,7 +78,7 @@ export function OrderConfirmation({selectedItems, showOrderConfirmation, startNe
     return(
         <>
         {showOrderConfirmation && (
-            <div className='fixed inset-0 bg-black bg-opacity-10 z-50 flex justify-center items-center p-4'>
+            <div className='fixed inset-0  z-50 flex justify-center items-center '>
                <div className="bg-white w-full max-w-md rounded-2xl shadow-lg p-6 flex flex-col"> 
                 <img 
                     className='w-7'
@@ -92,7 +92,7 @@ export function OrderConfirmation({selectedItems, showOrderConfirmation, startNe
                    {selectedItems.map(item => (
                      <div className='flex items-center justify-between my-2'>
                         <div className='flex items-center gap-2 w-fit'>
-                        <img className='w-10 h-10 rounded-md' src={item.image} />
+                        <img className='w-10 h-10 rounded-md' src={item.desktopImage} />
                         <span className='flex flex-col'>
                             <p className='text-Rose_900 font-medium text-[0.9rem]'>{item.name}</p>
                             <p className='text-Rose_400 text-[0.9rem]'> <span className='text-Red'>
@@ -125,14 +125,14 @@ function Card({name, descrip, desktopImage, price, onUpdateCart}){
     const handleIncrement = () => {
     const newQuantity = quantity + 1;
     setQuantity(newQuantity);
-    onUpdateCart({ name, price }, newQuantity);
+    onUpdateCart({ name, price, desktopImage }, newQuantity);
   };
 
   const handleDecrement = () => {
     const newQuantity = quantity - 1;
     if (newQuantity >= 0) {
       setQuantity(newQuantity);
-      onUpdateCart({ name, price }, newQuantity);
+      onUpdateCart({ name, price, desktopImage }, newQuantity);
     }
   };
 
@@ -140,16 +140,16 @@ function Card({name, descrip, desktopImage, price, onUpdateCart}){
     if (quantity === 0) {
       const newQuantity = 1;
       setQuantity(newQuantity);
-      onUpdateCart({ name, price }, newQuantity);
+      onUpdateCart({ name, price, desktopImage }, newQuantity);
     }
   };
 
     return(
-        <div className="w-82 sm:w-62.5">
-            <img className='w-full rounded-lg' src={desktopImage} alt="waffle" />
+        <div className='w-full max-w-82 sm:max-w-62.5'>
+            <img className={`${quantity > 0 ? 'outline-2 outline-Red' : ''} w-full rounded-lg`}  src={desktopImage} alt="waffle" />
             <button
                 onClick={quantity === 0 ? handleAddToCart : undefined}
-                className={`${quantity > 0 ? 'bg-Red justify-around' : 'bg-white justify-center'}  flex  items-center gap-2 relative z-20 outline-1 w-40 h-11  rounded-full outline-Red mx-auto -mt-6`}> 
+                className={`${quantity > 0 ? 'bg-Red justify-around' : 'bg-white justify-center'}  flex  items-center gap-2 relative z-20 outline-1 w-full max-w-40 h-11  rounded-full outline-Red mx-auto -mt-6`}> 
                 {quantity > 0 ?  (
                     <>
                  <img
@@ -157,7 +157,7 @@ function Card({name, descrip, desktopImage, price, onUpdateCart}){
                         e.stopPropagation();
                         handleDecrement();
                     }}
-                    className='outline outline-white px-1 py-2 rounded-full'
+                    className= 'outline-white px-1 py-2 rounded-full'
                     src={decrementIcon} 
                     alt="decrement" />
                  <p className='text-white'>{quantity}</p>
